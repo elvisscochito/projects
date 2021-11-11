@@ -1,2 +1,2 @@
 # Projects
-My projects
+My school and personal projects
