@@ -1,17 +1,12 @@
 import React from 'react';
 
-/* import ImageButton from './components/ImageButton'; */
-
-/* import Table from './components/Table'; */
-
-import Inputs from './components/Inputs';
+import Text from './components/Text';
 
 function App() {
   return (
     <div className="App">
-      <Inputs inputType={"email"} labelText={"Email"} placeholderText={"email@email.com"} />
 
-      <Inputs inputType={"password"} labelText={"Password"} placeholderText={"password"}/>
+      <Text textCaption="Home" />
 
       <header className="App-header">
       </header>
