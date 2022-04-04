@@ -4,7 +4,7 @@ import Avatar from './components/Avatar';
 import Button from './components/Button';
 import ImageButton from './components/ImageButton';
 import Input from './components/Input';
-import Link from './components/Link';
+import LinkButton from './components/LinkButton';
 import Table from './components/Table';
 import Text from './components/Text';
 
@@ -16,9 +16,9 @@ function App() {
 
       <Input inputType={"password"} labelText={"Password"} placeholderText={"type your password"} />
 
-      <Link reference={"google.com"} text={"Sign Up"} />
+      <LinkButton reference={"google.com"} text={"Sign Up"} />
 
-      <Link reference={"google.com"} text={"Log In"} />
+      <LinkButton reference={"google.com"} text={"Log In"} />
 
       <Text textCaption={"HELP"} />
       
