@@ -2,9 +2,9 @@ import React from "react";
 
 import '../styles/ImageButton.css';
 
-const ImageButton = ({picname, caption}) => {
+const ImageButton = ({pictureName, caption}) => {
     
-    const src = `../assets/img/${picname}.png`
+    const src = `../assets/img/${pictureName}.png`
 
     return (
         <>
