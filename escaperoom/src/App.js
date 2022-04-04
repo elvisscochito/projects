@@ -1,11 +1,13 @@
 import React from 'react';
 
-import Avatar from './components/Avatar'
+import ImageButton from './components/ImageButton';
 
 function App() {
   return (
     <div className="App">
-      <Avatar id={2} username={"@username"} />
+      <ImageButton picname={'profile'} caption={"Profile"} />
+      <ImageButton picname={"leaderboard"} caption={"Leaderboard"} />
+      <ImageButton picname={"help"} caption={"Help"} />
 
       <header className="App-header">
 
