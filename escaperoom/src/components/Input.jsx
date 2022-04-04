@@ -1,8 +1,8 @@
 import React from "react";
 
-import '../styles/Inputs.css';
+import '../styles/Input.css';
 
-const Inputs = ({inputType, labelText, placeholderText}) => {    
+const Input = ({inputType, labelText, placeholderText}) => {    
 
     return (
         <>
@@ -12,4 +12,4 @@ const Inputs = ({inputType, labelText, placeholderText}) => {
     );
 };
 
-export default Inputs;
+export default Input;

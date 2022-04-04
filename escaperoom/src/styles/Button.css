@@ -1,0 +1,19 @@
+.button {
+    border-radius: 3px;
+    padding: 7px 12px;
+    border: 1px solid #d5d5d5;
+    background-image: linear-gradient(#eee, #ddd);
+    font: 700 13px/18px Helvetica, Arial;
+}
+
+.button.success {
+    color: #fff;
+    background: #569e3d linear-gradient(#79d858, #569e3d) repeat-x;
+    border-color: #4a993e;
+}
+
+.button.danger {
+    color: #fff;
+    background: #900 linear-gradient(#c01b1b, #900) repeat-x;
+    border-color: #690000;
+}

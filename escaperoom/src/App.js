@@ -1,13 +1,11 @@
 import React from 'react';
 
-import Text from './components/Text';
+import Button from './components/Button';
 
 function App() {
   return (
     <div className="App">
-
-      <Text textCaption="Home" />
-
+      
       <header className="App-header">
       </header>
     </div>
