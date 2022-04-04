@@ -1,5 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const mysql = require("mysql");
 
 /*
  * API - comun
@@ -39,15 +40,18 @@ function handlers(req, next) {
         next();
     }
 
-    function fail(code) {
+    function fail(code, err) {
         req.code = code;
-        next(new Exception(code));
+        const ex = err ?? new Error(code);
+        next(ex);
     }
 
     return Object.freeze({ finish, fail });
 }
 
-const db = require("./effect/db")({});
+const sql = require("./effect/sql")({ mysql });
+
+const db = require("./effect/db")({ sql });
 
 const user = require("./uses/user")({
     handlers,
@@ -63,4 +67,4 @@ express()
         user.controller,
         user.error_controller,
     ])
-    .listen(8080);
+    .listen(8080, () => console.log(`listening on ${8080}`));
