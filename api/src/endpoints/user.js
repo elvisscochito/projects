@@ -121,4 +121,9 @@ module.exports = {
         generateToken,
         handler,
     ],
+    auth: [
+        validateBody,
+        validateToken,
+        decodeToken,
+    ],
 };
