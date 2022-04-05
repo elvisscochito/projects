@@ -1,6 +1,7 @@
 import React from 'react';
-
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Layout } from './Layout';
+import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Start from './pages/Start';
 import SignUp from './pages/SingUp';
@@ -21,6 +22,7 @@ function App() {
   return (
     <div className="App">
 
+
       <Profile profileName={"profileName"}/>
 
       <BrowserRouter>
@@ -32,8 +34,28 @@ function App() {
         </Routes>
       </BrowserRouter>
 
-      <header className="App-header">
-      </header>
+      <div className="Login">
+        <Inputs inputType={"email"} labelText={"Email"} placeholderText={"email@email.com"} />
+
+        <Inputs inputType={"password"} labelText={"Password"} placeholderText={"password"}/>
+
+
+        <button>Login</button>
+        <div>Don't have an account? </div>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Layout/>}>
+              <Route index element= {<div>Inicio</div>}/>
+              <Route path='/register' element= {<div></div>}/>
+              
+              <Route path='*' element= {<div>404 - Página no encontrada</div>}/>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+        <header className="App-header">
+        </header>
+      </div>
+      
     </div>
   );
 }
