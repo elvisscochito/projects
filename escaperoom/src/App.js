@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
 
-      {/* <Profile profileName={"profileName"}/> */}
+      <Profile profileName={"profileName"}/>
 
       <BrowserRouter>
         <Routes>
