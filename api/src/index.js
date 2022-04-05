@@ -1,10 +1,15 @@
 const db = require("./db");
+const express = require("express");
+
+const user = require("./endpoints/user");
 
 async function main() {
-    await db.sync();
-    db.Player.create({ name: 'ed', email: 'ed@email.com', password: 'password' })
-        .then(i => { console.log(`generated id: ${i.id}`)})
-        .catch(e => { console.error('error: ', e)});    
+    await db.sync();  
+
+    express()
+        .use(express.json())
+        .post("/user/create", user.create)
+        .listen(8081, () => console.log("listening..."));
 }
 
 main();
