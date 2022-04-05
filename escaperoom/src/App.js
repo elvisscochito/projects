@@ -21,16 +21,14 @@ function App() {
   return (
     <div className="App">
 
-      <Profile profileName={"profileName"}/>
+      {/* <Profile profileName={"profileName"}/> */}
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Start/>}>
-            <Route index element={<SignUp/>}></Route>
-            <Route path="/login" element={<LogIn/>}></Route>
-
-            <Route path="*" element={<div>Error 404</div>}></Route>
-          </Route>
+          <Route index path="/" element={<Start/>}></Route>
+          <Route path="/signup" element={<SignUp/>}></Route>
+          <Route path="/login" element={<LogIn/>}></Route>
+          <Route path="*" element={<div>Error 404</div>}></Route>
         </Routes>
       </BrowserRouter>
 

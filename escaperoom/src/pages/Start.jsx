@@ -7,9 +7,11 @@ import LinkButton from '../components/LinkButton';
 const Start = () => {
     return (
         <>
-            <LinkButton reference={"/"} text={"Sign Up"} />
+            <LinkButton reference={"/signup"} text={"Sign Up"} />
 
-            <LinkButton reference={"/login"} text={"Log In"} />            
+            <LinkButton reference={"/login"} text={"Log In"} />
+            
+            <Outlet />
         </>
     );
 };
