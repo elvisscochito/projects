@@ -5,7 +5,7 @@ import "../styles/Link.css"
 
 const LinkButton = ({reference, text}) => {
     return (
-        <Link to={reference} role="button" className="button">{text}</Link>
+        <Link to={reference} role="button" className="Link-button">{text}</Link>
     );
 };
 

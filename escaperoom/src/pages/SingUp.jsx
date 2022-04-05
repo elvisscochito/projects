@@ -1,13 +1,18 @@
 import React from "react";
 
 import Input from "../components/Input";
+import Button from "../components/Button";
 
 const SignUp = () => {
     return (
         <>
             <Input inputType={"email"} labelText={"Email"} placeholderText={"example@email.com"} />
+
+            <Input inputType={"text"} labelText={"Username"} placeholderText={"@username"} />
             
             <Input inputType={"password"} labelText={"Password"} placeholderText={"type your password"} />
+
+            <Button classStyle={"Button Success"} buttonText={"Submit"}/>
         </>
     );
 };
