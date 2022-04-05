@@ -5,11 +5,13 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Start from './pages/Start';
 import SignUp from './pages/SingUp';
 import LogIn from './pages/LogIn';
+import Profile from './pages/Profile';
 
 function App() {
   return (
     <div className="App">
 
+      <Profile />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Start/>}>
@@ -19,7 +21,6 @@ function App() {
             <Route path="*" element={<div>Error 404</div>}></Route>
           </Route>
         </Routes>
-
       </BrowserRouter>
 
       <header className="App-header">
