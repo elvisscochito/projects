@@ -1,38 +1,26 @@
 import React from 'react';
 
-import Avatar from './components/Avatar';
-import Button from './components/Button';
-import ImageButton from './components/ImageButton';
-import Input from './components/Input';
-import LinkButton from './components/LinkButton';
-import Table from './components/Table';
-import Text from './components/Text';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+
+import Start from './pages/Start';
+import SignUp from './pages/SingUp';
+import LogIn from './pages/LogIn';
 
 function App() {
   return (
     <div className="App">
 
-      <Input inputType={"email"} labelText={"Email"} placeholderText={"example@email.com"} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Start/>}>
+            <Route index element={<SignUp/>}></Route>
+            <Route path="/login" element={<LogIn/>}></Route>
 
-      <Input inputType={"password"} labelText={"Password"} placeholderText={"type your password"} />
+            <Route path="*" element={<div>Error 404</div>}></Route>
+          </Route>
+        </Routes>
 
-      <LinkButton reference={"google.com"} text={"Sign Up"} />
-
-      <LinkButton reference={"google.com"} text={"Log In"} />
-
-      <Text textCaption={"HELP"} />
-      
-      <Table />
-
-      <Avatar id={2} username={"username"} />
-
-      <Button classStyle={"button"} buttonText="Button"/>
-      <Button classStyle={"button success"} buttonText="Success"/>
-      <Button classStyle={"button danger"} buttonText="Danger"/>
-
-      <ImageButton pictureName={"avatar"} caption={"Profile"} />
-      <ImageButton pictureName={"leaderboard"} caption={"Leaderboard"} />
-      <ImageButton pictureName={"help"} caption={"Help"} />
+      </BrowserRouter>
 
       <header className="App-header">
       </header>
