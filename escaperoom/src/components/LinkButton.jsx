@@ -1,11 +1,12 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import "../styles/Link.css"
 
-const LinkButton = ({reference, text, indexNumber}) => {
+const LinkButton = ({reference, text}) => {
+    const navigate = useNavigate();
     return (
-        <Link to={reference} role="button" className="button" tabindex={indexNumber}>{text}</Link>
+        <button onClick={() => navigate(reference, {replace: true})} role="button" className="button">{text}</button>
     );
 };
 

@@ -4,7 +4,7 @@ import '../styles/ImageButton.css';
 
 const ImageButton = ({pictureName, caption}) => {
     
-    const src = `../assets/img/${pictureName}.png`
+    const src = require(`../assets/img/${pictureName}.png`)
 
     return (
         <>

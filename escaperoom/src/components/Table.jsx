@@ -2,7 +2,7 @@ import React from "react";
 
 import '../styles/Table.css';
 
-const Table = () => {
+const Table = ({data}) => {
     
     return (
         <table>
@@ -10,7 +10,7 @@ const Table = () => {
 
             <thead>
                 <tr>
-                    <th scope="col" scope="row">#</th>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Time</th>
                     <th scope="col">Score</th>
@@ -19,23 +19,16 @@ const Table = () => {
             </thead>
             
             <tbody>
-                <tr>
-                    <th scope="row">...</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
-                </tr>
-            </tbody>
-
-            <tbody>
-                <tr>
-                    <th scope="row">...</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
-                </tr>
+                {data.map(element => (
+                    <tr>
+                        <td>{element.number}</td>
+                        <td>{element.name}</td>
+                        <td>{element.time}</td>
+                        <td>{element.score}</td>
+                        <td>{element.Achievements}</td>
+                    </tr>
+                    ))}
+                
             </tbody>
         </table>
     );

@@ -1,5 +1,7 @@
 import React from "react";
 
+import {Outlet} from "react-router-dom";
+
 import LinkButton from '../components/LinkButton';
 
 const Start = () => {
@@ -7,7 +9,7 @@ const Start = () => {
         <>
             <LinkButton reference={"/"} text={"Sign Up"} />
 
-            <LinkButton reference={"/login"} text={"Log In"} />
+            <LinkButton reference={"/login"} text={"Log In"} />            
         </>
     );
 };
