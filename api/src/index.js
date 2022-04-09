@@ -7,6 +7,7 @@ import {
     HistoryEvent,
     HistoryPlayer,
 } from "./data";
+import apiReference from "./api-reference.html";
 
 const ERROR = {
     UNIQUE_CONSTRAINT: "SequelizeUniqueConstraintError",
@@ -44,7 +45,9 @@ const PORT = process.env.PORT ?? 8088;
 express()
     .use(cors())
     .use(express.json())
-    .get("/", (req, res) => res.send("hello"))
+    .get("/", (req, res) => res.sendFile(
+        /api-reference.*html/.exec(apiReference)[0],
+        { root: __dirname }))
     /* PLAYER ENDPOINTS */
     .get("/player", (req, res, next) => {
         Player.findAll()
@@ -99,5 +102,6 @@ express()
         res.status(500).json({ err: err.message });
     })
     .listen(PORT, () => {
+        console.log({ apiReference });
         console.log(`listening on '${PORT}'`);
     });
