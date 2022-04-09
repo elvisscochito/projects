@@ -23,29 +23,35 @@ const PORT = process.env.PORT ?? 8088;
 
 /*
  * PLAYER
- * [*] PUT /player : create
+ * [*] POST /player : create
  * [*] GET /player : get all
- * [ ] POST /player : login
+ * [ ] GET /player/:name : get all player info
+ * [ ] POST /player/login : login
+ * [ ] DELETE /player/:name : delete player and all player data
  * EVENT
- * [*] PUT /event : create
+ * [*] POST /event : create
  * [*] GET /event : get all
+ * [ ] DELETE /event/:name : delete event and all references
  * MATCH
- * [ ] PUT /match : create match from list of game events [("ed", "WIN"), ...]
- * [ ] GET /match : get all matches with all info
- * HISTORY-EVENT
- * HISTORY-PLAYER
+ * [ ] POST /match : create match from list of game events [("ed", "WIN"), ...]
+ * [ ] GET /match : get all matches
+ * [ ] GET /match/:id : get all match info
+ * [ ] DELETE /match:id : delete match and all references
+ * 
+ * TODO: data validation
  */
 
 express()
     .use(cors())
     .use(express.json())
     .get("/", (req, res) => res.send("hello"))
+    /* PLAYER ENDPOINTS */
     .get("/player", (req, res, next) => {
         Player.findAll()
             .then(data => res.json({ data }))
             .catch(next);
     })
-    .put("/player", (req, res, next) => {
+    .post("/player", (req, res, next) => {
         const { username, email, password } = req.body;
         Player.create({ name: username, email, password })
             .then(data => res.json({ status: MSG.CREATED }))
@@ -60,12 +66,13 @@ express()
                 }
             })
     })
+    /* EVENT ENDPOINTS */
     .get("/event", (req, res, next) => {
         Event.findAll()
             .then(data => res.json({ data }))
             .catch(next);
     })
-    .put("/event", (req, res, next) => {
+    .post("/event", (req, res, next) => {
         const { name, value } = req.body;
         Event.create({ name, value })
             .then(data => res.json({ status: MSG.CREATED }))
@@ -80,11 +87,13 @@ express()
                 }
             });
     })
-    .put("/match", async (req, res, next) => {
+    /* MATCH ENDPOINTS */
+    .post("/match", async (req, res, next) => {
         // [{ player: "ed", event: "win"}, ...]
         const { events } = req.body;
         Player.findAllevents.map(e => e.player)
     })
+    /* ERROR HANDLER */
     .use((err, req, res, next) => {
         console.error(err);
         res.status(500).json({ err: err.message });
