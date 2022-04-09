@@ -3,11 +3,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "targets": {
+    "api": {
+      "context": "node",
+      "outputFormat": "commonjs",
+      "distDir": "./dist",
+      "source": "./src/index.js"
+    }
+  },
   "scripts": {
-    "start": "nodemon ./src/index.js"
+    "start": "concurrently \"yarn watch:bundle\" \"yarn watch:node\"",
+    "watch:bundle": "parcel watch --target api --port 9885",
+    "watch:node": "nodemon --watch ./dist/index.js ./dist/index.js"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.15",
+    "parcel": "^2.4.1"
   },
   "dependencies": {
     "cors": "^2.8.5",

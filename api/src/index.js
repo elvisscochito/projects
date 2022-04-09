@@ -1,9 +1,12 @@
 import express from "express";
 import cors from "cors";
-import { Sequelize, DataTypes } from "sequelize";
-import req from "express/lib/request";
-
-const sequelize = new Sequelize('mysql://admin:Q82s594NmN4muuUWimXf@database-1.czfng6b4q5va.us-east-1.rds.amazonaws.com/metaverse_new');
+import {
+    Player,
+    Event,
+    Match,
+    HistoryEvent,
+    HistoryPlayer,
+} from "./data";
 
 const ERROR = {
     UNIQUE_CONSTRAINT: "SequelizeUniqueConstraintError",
@@ -16,35 +19,7 @@ const MSG = {
     INVALID_DATA: "INVALID_DATA",
 };
 
-const Player = sequelize.define('Player', {
-    id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING(128), allowNull: false },
-    email: { type: DataTypes.STRING(128), allowNull: false },
-    password: { type: DataTypes.STRING(128), allowNull: false },
-}, { tableName: 'player' });
-
-const Event = sequelize.define('Event', {
-    id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING(256), allowNull: false, unique: true },
-    value: { type: DataTypes.INTEGER, allowNull: true }
-}, { tableName: 'event' });
-
-const Match = sequelize.define('Match', {
-    id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    duration: { type: DataTypes.INTEGER, allowNull: true },
-}, { tableName: 'match' });
-
-const HistoryEvent = sequelize.define('HistoryEvent', {
-    id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    player_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: Player, key: 'id' } },
-    match_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: Match, key: 'id' } },
-    event_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: Event, key: 'id' } },
-}, { tableName: "history_event" });
-
-const HistoryPlayer = sequelize.define("HistoryPlayer", {
-    player_id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, references: { model: Player, key: 'id' } },
-    match_id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, references: { model: Match, key: 'id' } },
-}, { tableName: "history_player" });
+const PORT = process.env.PORT ?? 8088;
 
 /*
  * PLAYER
@@ -114,4 +89,6 @@ express()
         console.error(err);
         res.status(500).json({ err: err.message });
     })
-    .listen(4567, () => console.log("listening"));
+    .listen(PORT, () => {
+        console.log(`listening on '${PORT}'`);
+    });
