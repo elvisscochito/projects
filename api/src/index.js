@@ -54,7 +54,7 @@ express()
             .then(data => res.json({ data }))
             .catch(next);
     })
-    .get("/player/:username", (req, res, next) => {
+    .get("/player/:username", async (req, res, next) => {
         // TODO
     })
     .post("/player", (req, res, next) => {
@@ -110,11 +110,41 @@ express()
             .then(data => res.json({ data }))
             .catch(next);
     })
-    .get("/match:id", (req, res, next) => {
+    .get("/match/:id", (req, res, next) => {
         // TODO
     })
-    .post("/match", (req, res, next) => {
-        // TODO
+    .post("/match", async (req, res, next) => {
+        const { duration, players, events } = req.body;
+        // TODO: validation
+        // TODO: improve (reduce amount of queries)
+        const { id: match_id } = await Match.create({ duration });
+
+        const createPlayerRecords = Promise.all(
+            players.map(async name => {
+                const p = await Player.findOne({ where: { name } });
+                console.log("Found player !", { name, id: p.id });
+                return { player_id: p.id, match_id };
+            })
+        )
+            .then(changeset => HistoryPlayer.bulkCreate(changeset));
+
+        const createEventRecords = Promise.all(
+            events.map(async ({ player, event }) => {
+                let p = Player.findOne({ where: { name: player } });
+                let e = Event.findOne({ where: { name: event } });
+                [p, e] = await Promise.all([p, e]);
+
+                return { player_id: p.id, event_id: e.id, match_id };
+            })
+        )
+            .then(changesets => HistoryEvent.bulkCreate(changesets));
+
+        await Promise.all([
+            createPlayerRecords,
+            createEventRecords,
+        ]);
+
+        res.json({ status: MSG.CREATED });
     })
     .delete("/match/:id", (req, res, next) => {
         // TODO
