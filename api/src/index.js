@@ -54,8 +54,12 @@ express()
             .then(data => res.json({ data }))
             .catch(next);
     })
+    .get("/player/:username", (req, res, next) => {
+        // TODO
+    })
     .post("/player", (req, res, next) => {
         const { username, email, password } = req.body;
+        // TODO: validation
         Player.create({ name: username, email, password })
             .then(data => res.json({ status: MSG.CREATED }))
             .catch(err => {
@@ -69,6 +73,12 @@ express()
                 }
             })
     })
+    .delete("/player/:username", (req, res, next) => {
+        // TODO
+    })
+    .post("/player/login", (req, res, next) => {
+        // TODO
+    })
     /* EVENT ENDPOINTS */
     .get("/event", (req, res, next) => {
         Event.findAll()
@@ -77,6 +87,7 @@ express()
     })
     .post("/event", (req, res, next) => {
         const { name, value } = req.body;
+        // TODO: validation
         Event.create({ name, value })
             .then(data => res.json({ status: MSG.CREATED }))
             .catch(err => {
@@ -90,11 +101,23 @@ express()
                 }
             });
     })
+    .delete("/event/:name", (req, res, next) => {
+        // TODO
+    })
     /* MATCH ENDPOINTS */
-    .post("/match", async (req, res, next) => {
-        // [{ player: "ed", event: "win"}, ...]
-        const { events } = req.body;
-        Player.findAllevents.map(e => e.player)
+    .get("/match", (req, res, next) => {
+        Match.findAll()
+            .then(data => res.json({ data }))
+            .catch(next);
+    })
+    .get("/match:id", (req, res, next) => {
+        // TODO
+    })
+    .post("/match", (req, res, next) => {
+        // TODO
+    })
+    .delete("/match/:id", (req, res, next) => {
+        // TODO
     })
     /* ERROR HANDLER */
     .use((err, req, res, next) => {
