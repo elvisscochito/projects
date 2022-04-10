@@ -1,33 +1,39 @@
 import { Sequelize, DataTypes } from "sequelize";
+import debug from "debug";
 
-const sequelize = new Sequelize('mysql://admin:Q82s594NmN4muuUWimXf@database-1.czfng6b4q5va.us-east-1.rds.amazonaws.com/metaverse_new');
+const logger = debug("data");
+
+const sequelize = new Sequelize('sqlite::memory:', {
+    logging: msg => logger(msg),
+});
 
 export const Player = sequelize.define('Player', {
-    id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING(128), allowNull: false },
-    email: { type: DataTypes.STRING(128), allowNull: false },
-    password: { type: DataTypes.STRING(128), allowNull: false },
-}, { tableName: 'player' });
+    username: { type: DataTypes.STRING(64), allowNull: false, primaryKey: true },
+    password: { type: DataTypes.STRING(64), allowNull: false },
+    email: { type: DataTypes.STRING(64), allowNull: true },
+});
 
 export const Event = sequelize.define('Event', {
-    id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING(256), allowNull: false, unique: true },
-    value: { type: DataTypes.INTEGER, allowNull: true }
-}, { tableName: 'event' });
+    name: { type: DataTypes.STRING(64), allowNull: false, primaryKey: true },
+    description: { type: DataTypes.STRING(256), allowNull: true },
+    value: { type: DataTypes.INTEGER, allowNull: true },
+});
 
 export const Match = sequelize.define('Match', {
     id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
     duration: { type: DataTypes.INTEGER, allowNull: true },
-}, { tableName: 'match' });
+});
 
-export const HistoryEvent = sequelize.define('HistoryEvent', {
+export const EventHistory = sequelize.define('EventHistory', {
     id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    player_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: Player, key: 'id' } },
-    match_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: Match, key: 'id' } },
-    event_id: { type: DataTypes.INTEGER, allowNull: false, references: { model: Event, key: 'id' } },
-}, { tableName: "history_event" });
+});
 
-export const HistoryPlayer = sequelize.define("HistoryPlayer", {
-    player_id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, references: { model: Player, key: 'id' } },
-    match_id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, references: { model: Match, key: 'id' } },
-}, { tableName: "history_player" });
+// match events
+Match.EventHistory = Match.hasMany(EventHistory, { foreignKey: { allowNull: false } });
+EventHistory.Match = EventHistory.belongsTo(Match, { foreignKey: { allowNull: false } });
+Player.EventHistory = Player.hasMany(EventHistory, { foreignKey: { allowNull: false } });
+EventHistory.Player = EventHistory.belongsTo(Player, { foreignKey: { allowNull: false } });
+Event.EventHistory = Event.hasMany(EventHistory, { foreignKey: { allowNull: false } });
+EventHistory.Event = EventHistory.belongsTo(Event, { foreignKey: { allowNull: false } });
+
+sequelize.sync({ force: true });
