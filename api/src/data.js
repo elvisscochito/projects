@@ -1,11 +1,12 @@
 import { Sequelize, DataTypes } from "sequelize";
 import debug from "debug";
+import { DB } from "./config";
 
 const logger = debug("data");
 
-const sequelize = new Sequelize('sqlite::memory:', {
-    logging: msg => logger(msg),
-});
+const dbUrl =
+    `mysql://${DB.USER}:${DB.PASSWORD}@${DB.HOST}:3306/${DB.DATABASE}`;
+const sequelize = new Sequelize(dbUrl, { logging: msg => logger(msg) });
 
 export const Player = sequelize.define('Player', {
     username: { type: DataTypes.STRING(64), allowNull: false, primaryKey: true },
@@ -36,4 +37,4 @@ EventHistory.Player = EventHistory.belongsTo(Player, { foreignKey: { allowNull: 
 Event.EventHistory = Event.hasMany(EventHistory, { foreignKey: { allowNull: false } });
 EventHistory.Event = EventHistory.belongsTo(Event, { foreignKey: { allowNull: false } });
 
-sequelize.sync({ force: true });
+export const sync = sequelize.sync.bind(sequelize);

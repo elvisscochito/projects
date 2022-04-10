@@ -7,7 +7,9 @@ import {
     Match,
     EventHistory,
     EventHistory,
+    sync,
 } from "./data";
+import { API } from "./config";
 import apiReference from "./api-reference.html";
 
 const ERROR = {
@@ -20,9 +22,9 @@ const MSG = {
     DELETED: "DELETED",
     NAME_TAKEN: "NAME_TAKEN",
     INVALID_DATA: "INVALID_DATA",
+    DB_RESET: "DB_RESET",
+    DB_UPDATED: "DB_UPDATED",
 };
-
-const PORT = process.env.PORT ?? 8088;
 
 const logger = debug("api");
 
@@ -166,11 +168,22 @@ express()
             .then(data => res.json({ staus: MSG.DELETED }))
             .catch(next);
     })
+    /* DATA ENDPOINTS */
+    .get("/db/reset", (req, res, next) => {
+        sync({ force: true })
+            .then(data => res.json({ status: MSG.DB_RESET }))
+            .catch(next);
+    })
+    .get("/db/update", (req, res, next) => {
+        sync({ alter: true })
+            .then(data => res.json({ status: MSG.DB_UPDATED }))
+            .catch(next);
+    })
     /* ERROR HANDLER */
     .use((err, req, res, next) => {
         console.error(err);
         res.status(500).json({ err: err.message });
     })
-    .listen(PORT, () => {
-        console.log(`listening on '${PORT}'`);
+    .listen(API.PORT, () => {
+        console.log(`listening on '${API.PORT}'`);
     });
