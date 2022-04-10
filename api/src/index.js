@@ -24,6 +24,7 @@ const MSG = {
     INVALID_DATA: "INVALID_DATA",
     DB_RESET: "DB_RESET",
     DB_UPDATED: "DB_UPDATED",
+    NOT_FOUND: "NOT_FOUND",
 };
 
 const logger = debug("api");
@@ -42,7 +43,7 @@ express()
         { root: __dirname }))
     /* PLAYER ENDPOINTS */
     .get("/player", (req, res, next) => {
-        Player.findAll({ attributes: ['id', 'username'] })
+        Player.findAll({ attributes: ['username'] })
             .then(data => res.json({ data }))
             .catch(next);
     })
@@ -94,7 +95,7 @@ express()
     })
     /* EVENT ENDPOINTS */
     .get("/event", (req, res, next) => {
-        Event.findAll({ attributes: ['id', 'name', 'description', 'value'] })
+        Event.findAll({ attributes: ['name', 'description', 'value'] })
             .then(data => res.json({ data }))
             .catch(next);
     })
