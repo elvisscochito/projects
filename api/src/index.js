@@ -14,6 +14,7 @@ import apiReference from "./api-reference.html";
 
 const ERROR = {
     UNIQUE_CONSTRAINT: "SequelizeUniqueConstraintError",
+    FOREIGN_CONSTRAINT: "SequelizeForeignKeyConstraintError",
     INVALID_DATA: "SequelizeValidationError",
 };
 
@@ -22,6 +23,7 @@ const MSG = {
     DELETED: "DELETED",
     NAME_TAKEN: "NAME_TAKEN",
     INVALID_DATA: "INVALID_DATA",
+    INVALID_REFERENCE: "INVALID_REFERENCE",
     DB_RESET: "DB_RESET",
     DB_UPDATED: "DB_UPDATED",
     NOT_FOUND: "NOT_FOUND",
@@ -30,6 +32,21 @@ const MSG = {
 const logger = debug("api");
 
 debug.enable("api,data");
+
+function errorHandler(res, next) {
+    return function (err) {
+        switch (err.name) {
+            case ERROR.INVALID_DATA:
+                return res.json({ status: MSG.INVALID_DATA });
+            case ERROR.UNIQUE_CONSTRAINT:
+                return res.json({ status: MSG.NAME_TAKEN });
+            case ERROR.FOREIGN_CONSTRAINT:
+                return res.json({ status: MSG.INVALID_REFERENCE });
+            default:
+                return next(err);
+        }
+    }
+}
 
 express()
     .use(cors())
@@ -56,7 +73,13 @@ express()
                 include: [Match, Event],
             }]
         })
-            .then(({ username, email, EventHistories }) => ({
+            .then(process)
+            .catch(next);
+
+        function process(player) {
+            if (!player) return res.json({ status: MSG.NOT_FOUND });
+            const { username, email, EventHistories } = player;
+            const data = {
                 username, email,
                 events: EventHistories.map(({ Match, Event }) => ({
                     match: Match.id,
@@ -64,29 +87,20 @@ express()
                     description: Event.description,
                     value: Event.value,
                 })),
-            }))
-            .then(data => res.json({ data }))
-            .catch(next);
+            };
+            res.json({ data });
+        }
     })
     .post("/player", (req, res, next) => {
         const { username, email, password } = req.body;
         // TODO: validation
         Player.create({ username, email, password })
             .then(data => res.json({ status: MSG.CREATED }))
-            .catch(err => {
-                switch (err.name) {
-                    case ERROR.INVALID_DATA:
-                        return res.json({ status: MSG.INVALID_DATA });
-                    case ERROR.UNIQUE_CONSTRAINT:
-                        return res.json({ status: MSG.NAME_TAKEN });
-                    default:
-                        return next(err);
-                }
-            })
+            .catch(errorHandler(res, next));
     })
     .delete("/player/:username", (req, res, next) => {
         const { username } = req.params;
-        Player.destroy({ where: username })
+        Player.destroy({ where: { username } })
             .then(data => res.json({ status: MSG.DELETED }))
             .catch(next);
     })
@@ -104,20 +118,11 @@ express()
         // TODO: validation
         Event.create({ name, description, value })
             .then(data => res.json({ status: MSG.CREATED }))
-            .catch(err => {
-                switch (err.name) {
-                    case ERROR.INVALID_DATA:
-                        return res.json({ status: MSG.INVALID_DATA });
-                    case ERROR.UNIQUE_CONSTRAINT:
-                        return res.json({ status: MSG.NAME_TAKEN });
-                    default:
-                        return next(err);
-                }
-            });
+            .catch(errorHandler(res, next));
     })
     .delete("/event/:name", (req, res, next) => {
         const { name } = req.params;
-        Event.destroy({ where: name })
+        Event.destroy({ where: { name } })
             .then(data => res.json({ status: MSG.DELETED }))
             .catch(next);
     })
@@ -136,15 +141,20 @@ express()
                 include: [Player, Event],
             }],
         })
-            .then(match => ({
+            .then(process)
+            .catch(next);
+
+        function process(match) {
+            if (!match) return res.json({ status: MSG.NOT_FOUND });
+            const data = {
                 matchId: match.id,
                 events: match.EventHistories.map(ev => ({
                     player: ev.PlayerUsername,
                     event: ev.EventName,
                 })),
-            }))
-            .then(data => res.json({ data }))
-            .catch(next);
+            };
+            res.json({ data });
+        }
     })
     .post("/match", async (req, res, next) => {
         const { duration, events } = req.body;
@@ -160,24 +170,24 @@ express()
                 include: [EventHistory.Player, EventHistory.Event],
             }],
         })
-            .then(data => res.json({ status: MSG.CREATED }))
-            .catch(next);
+            .then(_ => res.json({ status: MSG.CREATED }))
+            .catch(errorHandler(res, next));
     })
     .delete("/match/:id", (req, res, next) => {
         const { id } = req.params;
-        Match.destroy({ where: id })
-            .then(data => res.json({ staus: MSG.DELETED }))
+        Match.destroy({ where: { id } })
+            .then(_ => res.json({ staus: MSG.DELETED }))
             .catch(next);
     })
     /* DATA ENDPOINTS */
     .get("/db/reset", (req, res, next) => {
         sync({ force: true })
-            .then(data => res.json({ status: MSG.DB_RESET }))
+            .then(_ => res.json({ status: MSG.DB_RESET }))
             .catch(next);
     })
     .get("/db/update", (req, res, next) => {
         sync({ alter: true })
-            .then(data => res.json({ status: MSG.DB_UPDATED }))
+            .then(_ => res.json({ status: MSG.DB_UPDATED }))
             .catch(next);
     })
     /* ERROR HANDLER */
