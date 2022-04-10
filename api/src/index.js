@@ -5,8 +5,7 @@ import {
     Player,
     Event,
     Match,
-    HistoryEvent,
-    HistoryPlayer,
+    EventHistory,
     EventHistory,
 } from "./data";
 import apiReference from "./api-reference.html";
@@ -18,6 +17,7 @@ const ERROR = {
 
 const MSG = {
     CREATED: "CREATED",
+    DELETED: "DELETED",
     NAME_TAKEN: "NAME_TAKEN",
     INVALID_DATA: "INVALID_DATA",
 };
@@ -45,7 +45,25 @@ express()
             .catch(next);
     })
     .get("/player/:username", async (req, res, next) => {
-        // TODO
+        const { username } = req.params;
+        Player.findOne({
+            where: { username },
+            include: [{
+                model: EventHistory,
+                include: [Match, Event],
+            }]
+        })
+            .then(({ username, email, EventHistories }) => ({
+                username, email,
+                events: EventHistories.map(({ Match, Event }) => ({
+                    match: Match.id,
+                    event: Event.name,
+                    description: Event.description,
+                    value: Event.value,
+                })),
+            }))
+            .then(data => res.json({ data }))
+            .catch(next);
     })
     .post("/player", (req, res, next) => {
         const { username, email, password } = req.body;
@@ -64,7 +82,10 @@ express()
             })
     })
     .delete("/player/:username", (req, res, next) => {
-        // TODO
+        const { username } = req.params;
+        Player.destroy({ where: username })
+            .then(data => res.json({ status: MSG.DELETED }))
+            .catch(next);
     })
     .post("/player/login", (req, res, next) => {
         // TODO
@@ -92,11 +113,14 @@ express()
             });
     })
     .delete("/event/:name", (req, res, next) => {
-        // TODO
+        const { name } = req.params;
+        Event.destroy({ where: name })
+            .then(data => res.json({ status: MSG.DELETED }))
+            .catch(next);
     })
     /* MATCH ENDPOINTS */
     .get("/match", (req, res, next) => {
-        Match.findAll({ attributes: ['id', 'duration']})
+        Match.findAll({ attributes: ['id', 'duration'] })
             .then(data => res.json({ data }))
             .catch(next);
     })
@@ -120,7 +144,7 @@ express()
             .catch(next);
     })
     .post("/match", async (req, res, next) => {
-        const { duration, players, events } = req.body;
+        const { duration, events } = req.body;
         Match.create({
             duration,
             EventHistories: events.map(({ player, event }) => ({
@@ -137,7 +161,10 @@ express()
             .catch(next);
     })
     .delete("/match/:id", (req, res, next) => {
-        // TODO
+        const { id } = req.params;
+        Match.destroy({ where: id })
+            .then(data => res.json({ staus: MSG.DELETED }))
+            .catch(next);
     })
     /* ERROR HANDLER */
     .use((err, req, res, next) => {
