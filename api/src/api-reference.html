@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Api Reference</title>
+</head>
+
+<body>
+    <!-- page content -->
+    <h1>Api Reference</h1>
+    <ul>
+        <li>
+            <h2>Player</h2>
+
+            <p>
+                A player represents a user account, one can create users,
+                delete users, get user info, etc.
+            </p>
+
+            <ul>
+                <li>
+                    <code>GET /player</code>
+                    <p>Returns list of ALL players</p>
+                </li>
+                <li>
+                    <code>GET /player/kenny</code>
+                    <p>
+                        Returns ALL info related to a player, such as
+                        match history, total score, achivements, etc.
+                    </p>
+                </li>
+                <li>
+                    <code>POST /player</code>
+                    <br>
+                    <code>
+                        {
+                            "username": "kenny",
+                            "password": "password",
+                            "email": "kenny@mail.com"
+                        }
+                    </code>
+                    <p>Creates a new player</p>
+                </li>
+                <li>
+                    <code>DELETE /player/kenny</code>
+                    <p>Deletes player of given username</p>
+                </li>
+                <li>
+                    <code>POST /player/login</code>
+                    <br>
+                    <code>
+                        {
+                            "username": "kenny",
+                            "password": "password"
+                        }
+                    </code>
+                    <p>Authenticates as player and returns token</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2>Event</h2>
+
+            <p>
+                An event represents some possible in-game action, such as
+                getting an achivement, opening a door, etc.
+
+                Events are associated with a NAME and a (optional) VALUE.
+            </p>
+
+            <ul>
+                <li>
+                    <code>GET /event</code>
+
+                    <p>
+                        Gets all registered events
+                    </p>
+                </li>
+                <li>
+                    <code>POST /event</code>
+                    <br>
+                    <code>
+                        {
+                            "name": "OPEN_DOOR",
+                            "value": 1
+                        }
+                    </code>
+
+                    <p> Creates a value with a name and its value</p>
+                </li>
+                <li>
+                    <code>DELETE /event/:name</code>
+
+                    <p>Deletes the event of given name</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2>Match</h2>
+
+            <p>
+                A match represents a full game cycle, all other information
+                is associated to exactly one match, such as "player x did y in match z".
+            </p>
+
+            <ul>
+                <li>
+                    <code>GET /match</code>
+                    <p>
+                        Get list of all existing matches
+                    </p>
+                </li>
+                <li>
+                    <code>GET /match/:id</code>
+                    <p>
+                        Get all information related to a match, such as
+                    <ul>
+                        <li>Match players</li>
+                        <li>Duration</li>
+                        <li>Game events</li>
+                        <li>Total scores</li>
+                        <li>Etc.</li>
+                    </ul>
+                    </p>
+                </li>
+                <li>
+                    <code>POST /match</code>
+                    <br>
+                    <code>
+                        {
+                            "duration": 3456,
+                            "players": [
+                                "kenny",
+                                "gabdiel",
+                                "emmanuel"
+                            ],
+                            "events": [
+                                { "player": "kenny", "event": "OPEN_DOOR" }
+                            ]
+                        }
+                    </code>
+
+                    <p>
+                        Registers a new match, with all associated information
+                    </p>
+                </li>
+                <li>
+                    <code>DELETE /match/:id</code>
+                    <p>
+                        Deletes the match of given id
+                    </p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>

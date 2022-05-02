@@ -1,0 +1,34 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "license": "MIT",
+  "targets": {
+    "api": {
+      "context": "node",
+      "outputFormat": "commonjs",
+      "distDir": "./dist",
+      "source": "./src/index.js"
+    }
+  },
+  "scripts": {
+    "start": "concurrently \"yarn watch:bundle\" \"yarn watch:node\"",
+    "watch:bundle": "parcel watch --target api --port 9885",
+    "watch:node": "nodemon --watch ./dist/index.js ./dist/index.js"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.15",
+    "parcel": "^2.4.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.4",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.18.0",
+    "sqlite3": "^5.0.2"
+  }
+}
