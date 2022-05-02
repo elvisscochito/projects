@@ -1,0 +1,10 @@
+/* body {
+    background-image: url("public/assets/img/profile.png");
+} */
+
+.Start {
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

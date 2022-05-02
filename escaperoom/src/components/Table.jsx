@@ -3,7 +3,6 @@ import React from "react";
 import '../styles/Table.css';
 
 const Table = ({data}) => {
-    
     return (
         <table>
             <caption>LEADBOARD</caption>
@@ -27,8 +26,7 @@ const Table = ({data}) => {
                         <td>{element.score}</td>
                         <td>{element.Achievements}</td>
                     </tr>
-                    ))}
-                
+                ))}
             </tbody>
         </table>
     );

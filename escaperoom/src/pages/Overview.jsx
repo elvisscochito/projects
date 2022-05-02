@@ -5,7 +5,7 @@ import ImageButton from '../components/ImageButton';
 const Overview = () => {
     return (
         <>
-            <ImageButton pictureName={"avatar"} caption={"Profile"} />
+            <ImageButton pictureName={"profile"} caption={"Profile"} />
             <ImageButton pictureName={"leaderboard"} caption={"Leaderboard"} />
             <ImageButton pictureName={"help"} caption={"Help"} />
         </>
