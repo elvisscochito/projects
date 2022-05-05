@@ -17,6 +17,8 @@ const Home = () => {
         </Col>
       </Row>
 
+      <hr style={{marginBottom: "100px"}}/>
+
       <Row>
 
         <Col className="mx-auto text-center" style={{marginTop: "100px"}}>
