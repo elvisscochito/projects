@@ -5,11 +5,12 @@ import '../styles/Start.css';
 
 const Start = () => {
     return (
-        <div className="Start">
-            <LinkButton reference={"/signup"} text={"Sign Up"} />
+        <div className="Start vw-100 vh-100">
+            <div className="centerLinkButton">
+                <LinkButton reference={"/signup"} text={"Sign Up"} />
 
-            <LinkButton reference={"/login"} text={"Log In"} />
-            
+                <LinkButton reference={"/login"} text={"Log In"} />
+            </div>
         </div>
     );
 };

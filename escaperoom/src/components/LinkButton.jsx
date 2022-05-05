@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-import "../styles/Link.css"
+import "../styles/LinkButton.css"
 
 const LinkButton = ({reference, text}) => {
     return (

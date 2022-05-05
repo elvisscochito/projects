@@ -3,3 +3,7 @@ img {
     border-radius: 50%;
     width: 100px;
 }
+
+img:hover {
+    cursor: pointer;
+}

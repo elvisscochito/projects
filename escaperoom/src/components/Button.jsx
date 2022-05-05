@@ -1,13 +1,14 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
 import '../styles/Button.css';
 
-const Button = ({classStyle, buttonText}) => {
+const ButtonComponent = ({Buttonfunction, classStyle, buttonText}) => {
     return (
         <>
-            <button className={classStyle}>{buttonText}</button>
+            <button onClick={Buttonfunction} className={classStyle} type="submit">{buttonText}</button>
         </>
     );
 };
 
-export default Button;
+export default ButtonComponent;

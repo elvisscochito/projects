@@ -1,4 +1,15 @@
 .Text-caption {
-    color: #ffffff;
-    background-color: blue;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+    font-weight: bold;
+    font: 700 13px/18px;
+    width: 150px;
+    margin-top: 15px;
+    margin-bottom: 100px;
+    padding: 6px 15px;
+    border-radius: 5px;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(21, 88%, 20%);
 }

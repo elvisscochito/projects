@@ -1,4 +1,4 @@
-.Button {
+/* .Button {
     border-radius: 3px;
     padding: 7px 12px;
     border: 1px solid #d5d5d5;
@@ -16,4 +16,27 @@
     color: #fff;
     background: #900 linear-gradient(#c01b1b, #900) repeat-x;
     border-color: #690000;
+} */
+
+.button{
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+
+    font-weight: bold;
+    font: 700 13px/18px;
+
+    border-radius: 20px;
+    padding: 10px;
+    
+    color: hsl(45, 15%, 95%);
+    background-color: hsl(21, 88%, 20%);
+    border:none;
+}
+  
+.button:hover{
+    color: hsl(21, 88%, 20%);
+    background-color: hsl(45, 15%, 95%);
+    border:none;
 }

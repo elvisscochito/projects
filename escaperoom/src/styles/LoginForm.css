@@ -1,0 +1,40 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap");
+
+* {
+  font-family: 'Poppins';
+}
+
+.formBody {
+  display: grid;
+  background: #fefefe;
+  min-height: 100vh;
+}
+
+#sign-in-form{
+  max-width: 300px;
+}
+
+#main-container{
+  place-items: center center;
+}
+
+.login-logo{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+/* .login-button{
+  background-color: hsl(45, 15%, 95%);
+  background-color: hsl(21, 88%, 20%);
+  border:none;
+}
+
+.login-button:hover{
+  color: hsl(21, 88%, 20%);
+  background-color: hsl(45, 15%, 95%);
+  border:none;
+} */
