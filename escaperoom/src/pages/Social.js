@@ -4,6 +4,8 @@ import { followPlayer, getFollowedPlayers, getFollowers } from "../services/api"
 import { Navigate, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import Text from "../components/Text";
+
 const UserList = ({ users }) => {
   return (
     <Container>
@@ -123,8 +125,18 @@ const Amigo = () => {
 
   return (
     <Container>
+
+       <Row>
+        <Col className="mx-auto text-center">
+          <Text textCaption={"Social"} />
+        </Col>
+      </Row>
+
+      <hr/>
+
       <Row>
         <Col md={8} className="mx-auto">
+
           <AddFollow token={token} />
         </Col>
       </Row>

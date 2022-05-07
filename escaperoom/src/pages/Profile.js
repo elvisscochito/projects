@@ -8,19 +8,22 @@ import Avatar from "../components/Avatar";
 const Profile = () => {
   const params = useParams();
   const username = params.username;
+  const user = localStorage.getItem('user');
+ 
 
   return (
     <Container className="mt-3">
       <Row>
         <Col className="mx-auto text-center">
           <Text textCaption={"Profile"} />
-        </Col>
-      </Row>
+        
+      
 
       <hr style={{marginBottom: "100px"}}/>
 
-      <Avatar id={2} username={"@username"} />
-
+      <Avatar id={2} username={user} />
+      </Col>
+      </Row>
       <Row>
         {username && (
           <Col className="mx-auto text-center align-self-center">

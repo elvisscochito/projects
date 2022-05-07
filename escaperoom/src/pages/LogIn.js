@@ -37,6 +37,7 @@ const LogIn = () => {
 		
 		if (data.status === "SUCCESS" && data.token) {
 			localStorage.setItem("token", data.token);
+			localStorage.setItem("user", username);
 			
 			navigate("/home", { replace: true });
 		} else if (data.status === "INVALID_LOGIN") {
@@ -78,7 +79,7 @@ const LogIn = () => {
 				/>
 				</Form.Group>
 				
-				<ButtonComponent buttonText="Login" classStyle="button w-100 mt-2"/>
+				<ButtonComponent buttonText="Continue" classStyle="button w-100 mt-2"/>
       		</Form>
 
 		<Modal

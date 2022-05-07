@@ -6,15 +6,14 @@ import Form from "react-bootstrap/Form";
 
 import ButtonComponent from "../components/Button";
 import Button from "react-bootstrap/Button";
-import LinkButton from '../components/LinkButton';
 
 import Modal from "react-bootstrap/Modal";
 
 import { createUser } from "../services/api";
 
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
-
 import "../styles/LoginForm.css";
+
+import { playerLogin } from "../services/api";
 
 const SignUp = () => {
 
@@ -40,20 +39,35 @@ const SignUp = () => {
 		} else {
 			const data = await createUser({ username, password });
 
-		if (data.status === "CREATED") {
-			setCreationResult("User created successfully");
-			setCreationModal(true);
-		} else {
-			let reason = "User creation failed";
-			if (data.status === "NAME_TAKEN") {
-				reason = "Username taken";
+			if (data.status === "CREATED") {
+				setCreationResult("User created successfully");
+				setCreationModal(true);
+			} else {
+				let reason = "User creation failed";
+				if (data.status === "NAME_TAKEN") {
+					reason = "Username taken";
+				}
+				setCreationResult(reason);
+				setCreationModal(true);
 			}
-			setCreationResult(reason);
-			setCreationModal(true);
+			console.debug(data.status);
 		}
-		console.debug(data.status);
-	}
-};
+
+		const data = await playerLogin({ username, password });
+		if (data.error) {
+			console.log(data.error);
+			return;
+		}
+		
+		if (data.status === "SUCCESS" && data.token) {
+			localStorage.setItem("token", data.token);
+			localStorage.setItem("user", username);
+			
+			navigate("/home", { replace: true });
+		} else if (data.status === "INVALID_LOGIN") {
+			setInvalidLoginModal(true);
+		}
+	};
 
 	return (
 	<Container id="main-container" className="formBody d-grid h-100">
@@ -96,10 +110,8 @@ const SignUp = () => {
 			/>
 			</Form.Group>
 
-			<LinkButton className='w-100' reference={"/login"} text={"Go to Log In"} />
-
-			<ButtonComponent Buttonfunction={register} buttonText="Register" classStyle="button w-100 mt-2"/>
-
+			<ButtonComponent Buttonfunction={register} buttonText="Continue" classStyle="button w-100 mt-2"/>
+			
 		</Form>
 
 	<Modal

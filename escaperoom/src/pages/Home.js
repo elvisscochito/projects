@@ -9,6 +9,8 @@ import ImageButton from "../components/ImageButton";
 
 const Home = () => {
 
+  const src = `/assets/img/file-earmark-zip-fill.svg`;
+
   return (
     <Container className="mt-3">
       <Row>
@@ -36,6 +38,14 @@ const Home = () => {
           <LinkButton reference={"/home/help"} text={"HELP"} />
         </Col>
       </Row>
+
+      <Row>
+        <Col className="mx-auto text-center">
+          <img src={src}/>
+                    
+          <a href="https://drive.google.com/file/d/16b84WmQQ0ESPPsLobTEElFYZN4hcvDsb/view?usp=sharing"> Download unity game in zip format.</a>
+        </Col>
+        </Row>
 
      {/*  <Row>
         <Col xs={6} className="mx-auto text-center">
