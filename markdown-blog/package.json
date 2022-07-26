@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon index.js",
+    "devStart": "npx nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,7 +19,8 @@
     "marked": "^4.0.18",
     "method-override": "^3.0.0",
     "mongoose": "^6.4.6",
-    "slugify": "^1.6.5"
+    "slugify": "^1.6.5",
+    "vercel": "^27.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
