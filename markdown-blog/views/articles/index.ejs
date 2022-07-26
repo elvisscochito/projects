@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Blog articles</h1>
+        <a href="/articles/new" class="btn btn-success">New article</a>
+        <% articles.forEach((article) => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title"><%= article.title %></h4>
+                    <div class="card-subtitle mb-2 text-muted"><%= article.date.toLocaleDateString() %></div>
+                    <div class="card-text mb-2"><%= article.description %></div>
+                    <!-- article.id change to article.slug -->
+                    <a href="articles/<%= article.slug %>" class="btn btn-primary">Read more</a>
+
+                    <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+
+                    <!-- use method-override package in form to delete article, instead of a tag link because that google's will be everything in the database when it indexes it -->
+                    <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    </div>  
+</body>
+</html>
