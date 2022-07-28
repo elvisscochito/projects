@@ -1,18 +1,22 @@
 import express from 'express';
+import {PORT} from './helpers/config.js';
 
 import mongoose from 'mongoose';
 import methodOverride from 'method-override';
 
 import articleRouter from './routes/articles.js';
 import Article from './models/article.js';
+import './helpers/mongodb-config.js';
 
 const hostname = process.env.HOSTNAME || 'localhost';
-const port = process.env.PORT || 3000;
+/** @note selected via .env/config. files */
+/* const port = process.env.PORT || 3000; */
 const server = express();
 
-mongoose.connect('mongodb://localhost/markdown-blog');
+/** @note connected via database file */
+/* mongoose.connect('mongodb://localhost/markdown-blog'); */
 
-server.set('port', port);
+server.set('port', PORT);
 server.set('hostname', hostname);
 server.set('view engine', 'ejs');
 
