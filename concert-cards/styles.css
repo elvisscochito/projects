@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    background-color: hsl(227, 19%, 14%);
+    color: hsl(0, 0%, 100%);
+    font-family: 'Roboto', sans-serif;
+}
+
+section.concerts div.card:first-child {
+    background-image: url('./imgs/1.jpg');
+}
+
+section.concerts div.card:nth-child(2) {
+    background-image: url('./imgs/2.jpg');
+}
+
+section.concerts div.card:nth-child(3) {
+    background-image: url('./imgs/3.jpg');
+}
+
+section.concerts div.card:nth-child(4) {
+    background-image: url('./imgs/4.jpg');
+}
+
+section.concerts div.card:nth-child(5) {
+    background-image: url('./imgs/5.jpg');
+}
+
+section.concerts div.card:last-child {
+    background-image: url('./imgs/6.jpg');
+}
+
+section.banner {
+    background-image: url('./imgs/banner.jpg');
+}
+
+.card {
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.banner {
+    padding: 20px;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.banner ul {
+    list-style: none;
+}
+
+.banner ul li {
+    margin: 15px;
+}
