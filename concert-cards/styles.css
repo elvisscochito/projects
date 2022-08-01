@@ -11,7 +11,20 @@ body {
     color: hsl(0, 0%, 100%);
     font-family: 'Roboto', sans-serif;
     min-height: 100vh;
-    display: flex;
+
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+
+    display: grid;
+    place-items: center;
+}
+
+header h1 {
+    text-align: center;
+    font-style: italic;
+    border-bottom: 1px solid hsl(0, 0%, 10%);
+    border-top: 1px solid hsl(0, 0%, 10%);
 }
 
 section.concerts div.card:first-child {
@@ -131,7 +144,7 @@ div.card span.header {
 }
 
 .banner ul {
-    list-style: none;
+    list-style-position: inside;
 }
 
 .banner ul li {
@@ -160,12 +173,4 @@ div.card span.header {
     section.concerts {
         grid-template-columns: 1fr;
     }
-}
-
-@media only screen and (max-width: 900px) {
-    
-}
-
-@media only screen and (max-width: 900px) {
-    
 }
