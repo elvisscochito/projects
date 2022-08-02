@@ -133,14 +133,14 @@ div.card span.header {
     
     /* Flexbox */
     /* width: 30%; */
-    /* display: flex;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between; */
+    justify-content: space-between;
 
     /* Grid */
-    display: grid;
+    /* display: grid;
     grid-template-rows: repeat(3, auto);
-    align-items:center;
+    align-items:center; */
 }
 
 .banner ul {
