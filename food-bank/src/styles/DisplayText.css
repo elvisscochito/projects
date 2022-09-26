@@ -1,0 +1,12 @@
+@import url('themes/color-scheme.css');
+
+.Display-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.5;
+  /* margin-bottom: 0.5rem; */
+  padding: 1em;
+  color: hsl(0, 0%, 100%);
+  border-radius: 0.5em;
+  background-color: var(--quinary-color);
+}

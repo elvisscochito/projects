@@ -5,7 +5,6 @@ function Home() {
     return (
         <>
             <TextHeader text="Home" />
-            <h1>Home</h1>
         </>
     );
 }

@@ -1,0 +1,35 @@
+@import url('themes/color-scheme.css');
+
+/* html {
+    font-size: 62.5%;
+} */
+
+.start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    gap: 2rem;
+}
+
+.container {
+    background-color: var(--tertiary-color);
+    padding: 1em 4em;
+    border-radius: 0.5em;
+    /* height: max-content;
+    width: max-content; */
+    display: inline-block;
+}
+
+img {
+    width: 25%;
+    height: 25%;
+}
+
+/* figcaption {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--secondary-color);
+} */

@@ -2,6 +2,8 @@
     --primary-color: #FE921D;
     --secondary-color: #0DB14B;
     --tertiary-color: #ED1A3B;
+    --quaternary-color: #AE3C06;
+    --quinary-color: #58595B;
     color-scheme: light dark;
     accent-color: var(--tertiary-color);
 }
