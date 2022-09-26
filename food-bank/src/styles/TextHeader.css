@@ -1,0 +1,11 @@
+@import url('themes/color-scheme.css');
+
+header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: hsl(0, 0%, 100%);
+    text-align: center;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    background-color: var(--secondary-color);
+}
