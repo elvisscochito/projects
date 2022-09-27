@@ -1,0 +1,27 @@
+@import url('themes/color-scheme.css');
+
+div.Card {
+    border-radius: .25rem;
+}
+
+header.Card-header {
+    background-color: var(--quinary-color);
+}
+
+/* :has() fallback */
+header.Card-header > img {
+    width: 10%;
+    height: 10%;
+    /* aspect-ratio: 1/1; */
+} 
+
+/* @supports (:has) {
+    header.Card-header:has(img) {
+        color: red; */
+        /* aspect-ratio: 1/1; */
+    /* }
+} */
+
+footer.Card-footer {
+    background-color: var(--tertiary-color);
+}

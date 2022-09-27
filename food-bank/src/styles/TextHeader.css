@@ -1,6 +1,6 @@
 @import url('themes/color-scheme.css');
 
-header {
+header.Text-header {
     font-size: 2.5rem;
     font-weight: 700;
     color: hsl(0, 0%, 100%);
