@@ -3,13 +3,15 @@
 #Proyecto tipo 1
 
 def ReadData(): #read file information
-    File=open("Archive.txt", "r")
+    """ with open("file.txt", "r") as File:
+        Data=File.readlines() """
+    File=open("file.txt", "r")
     Data=File.read().split("\n\n")
     File.close()
     return Data[:-1]
 
 def WriteData(Data): #write information to the file
-    File=open("Archive.txt", "w+")
+    File=open("file.txt", "w+")
     for d in Data:
         File.write(d)
         File.write("\n\n")
@@ -43,7 +45,7 @@ def Add(): #Define the function Add
     #Shows the data entered
     print("Data name: "+Name+", phone: "+Phone+", username: "+Username+", birthday: "+Birthday+", location "+Location+", career: "+Career+", semester: "+Semester+" &  school: "+School+" captured successfully \n")
     #Send the information to the file "Archive.txt"
-    File=open("Archive.txt", "a+") #Create the file
+    File=open("file.txt", "a+") #Create the file
     for i in Lista:
         File.write(i["Name"])
         File.write("\n")
@@ -142,7 +144,7 @@ def Delete(): #Define the function Borrar
 
         elif Option4=="1":
             print("1. Continue")
-            File=open("Archive.txt", "w")
+            File=open("file.txt", "w")
             File.seek(0)
             File.truncate()
             File.close()
