@@ -1,0 +1,17 @@
+.Github-Profile {
+    margin: 1rem;
+}
+
+.Info {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.Name {
+    font-size: 125%;
+}
+
+img {
+    height: 75px;
+    width: 75px;
+}
