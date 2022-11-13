@@ -1,0 +1,105 @@
+.githubProfile {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 0.5rem;
+    width: fit-content;
+    height: fit-content;
+    border: thin solid hsl(0, 0%, 75%);
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    background-color: var(--main-color);
+    overflow: hidden;
+    padding-bottom: 0.5rem;
+}
+
+header.header {
+    padding: 1rem 1rem 0 1rem;
+    background: linear-gradient(to bottom, var(--accent-color) 65%, var(--main-color) 35%);
+}
+
+div.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+}
+
+span.name {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+span.username {
+    color: var(--details-color);
+}
+
+div.body p.bio {
+    inline-size: 30ch;
+    overflow-wrap: break-word;
+}
+
+div.body div.info {
+    background-color: var(--bg-color);
+    padding: 0.5rem 1rem;
+    border-radius: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: fit-content;
+    -webkit-border-radius: 2.5rem;
+    -moz-border-radius: 2.5rem;
+    -ms-border-radius: 2.5rem;
+    -o-border-radius: 2.5rem;
+}
+
+div.infoItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+div.infoItem span {
+    font-weight: 600;
+}
+
+.icon {
+    color: var(--details-color);
+}
+
+img {
+    width: 10rem;
+    height: 10rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    object-fit: cover;
+    border: thin solid var(--details-color);
+    background-color: var(--main-color);
+}
+
+footer.footer {
+    padding: 0.5rem;
+}
+
+footer.footer a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+footer.footer a:is(:hover, :focus, :active) {
+    text-decoration: underline;
+}

@@ -1,0 +1,73 @@
+.grid {
+    display: grid;
+    place-content: center;
+    width: 100vw;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: var(--main-color);
+    border-radius: 0.5rem;
+    width: fit-content;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+fieldset.group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    gap: 0.5em;
+}
+
+label.label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* img.icon {
+    width: 1.5em;
+    height: 1.5em;
+} */
+
+input.input {
+    padding: 0.5rem;
+    border: 1px solid var(--details-color);
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+input.input:focus {
+    outline: none;
+    border: thin solid var(--accent-color);
+    caret-color: var(--accent-color);
+}
+
+.btn {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    background-color: var(--accent-color);
+    color: hsl(0, 0%, 100%);
+    font-weight: bold;
+    cursor: pointer;
+}

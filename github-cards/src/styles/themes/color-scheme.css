@@ -1,0 +1,13 @@
+:root {
+    --bg-color: hsl(0, 0%, 96%);
+    --main-color: hsl(0, 0%, 100%);
+    --text-color: hsl(0, 0%, 0%);
+    --accent-color: hsl(213, 13%, 16%);
+    --details-color: hsl(0, 0%, 75%);
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: var(--bg-color);
+    }
+}

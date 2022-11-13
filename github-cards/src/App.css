@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+header > h1 {
+  color: var(--accent-color);
+}

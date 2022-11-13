@@ -24,7 +24,10 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<h1>The GitHub Card app</h1>
+				<header>
+					<h1>GitHub Cards app</h1>
+				</header>
+				
 				<Form onSubmit={this.addNewProfile} />
 				<CardList profiles={this.state.profiles} />
     		</div>
