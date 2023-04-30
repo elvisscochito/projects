@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,17 @@
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
     <script defer src="main.js"></script>
 </head>
+
 <body>
     <main>
         <section class="container">
             <h2>Ip info</h2>
             <form id="form">
                 <label for="userIp">User's ip:</label>
-                <input type="text" id="userIp" placeholder="Enter here the ip" pattern="\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9])\.){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b" required>
-                <small>E.g.: 54.85.132.025</small>
+                <input type="text" id="userIp" placeholder="Enter here the ip"
+                    pattern="\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9])\.){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b"
+                    required>
+                <small>E.g.: 8.8.8.8</small>
 
                 <button type="submit" id="submit">Submit and search ip info</button>
             </form>
@@ -30,4 +34,5 @@
 
     </footer>
 </body>
+
 </html>
