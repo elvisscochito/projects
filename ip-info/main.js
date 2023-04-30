@@ -9,7 +9,7 @@
 }; */
 
 const fetchData = (ip) => {
-    return fetch(`http://ip-api.com/json/${ip}`)
+    return fetch(`http://api.ipstack.com/${ip}?access_key=632e76960ad92206bb4ad557be3f2c16`)
         .then(res => res.json())
         /** @note comment to continue the code dawn bellow */
         /* .then(data => console.log(data)) */
